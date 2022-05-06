@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/button.dart';
 import '../utils.dart';
 import '../main.dart';
-import 'increment_buttons.dart';
 
 class DurationControlBar extends StatelessWidget {
   DurationControlBar(
@@ -22,35 +22,37 @@ class DurationControlBar extends StatelessWidget {
         padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            Text(label),
+            Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IncrementButton(
+                Button(
                     onPressed: () {
                       settings.alterDurationSettings(
                           type, const Duration(minutes: -5));
                     },
-                    text: '-5'),
-                IncrementButton(
+                    child: const Text('-5')),
+                Button(
                     onPressed: () {
                       settings.alterDurationSettings(
                           type, const Duration(minutes: -1));
                     },
-                    text: '-1'),
-                Text(twoDigits(settings.getDurationByType(type).inMinutes)),
-                IncrementButton(
+                    child: const Text('-1')),
+                Text(twoDigits(settings.getDurationByType(type).inMinutes),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Button(
                     onPressed: () {
                       settings.alterDurationSettings(
                           type, const Duration(minutes: 1));
                     },
-                    text: '+1'),
-                IncrementButton(
+                    child: const Text('+1')),
+                Button(
                     onPressed: () {
                       settings.alterDurationSettings(
                           type, const Duration(minutes: 5));
                     },
-                    text: '+5'),
+                    child: const Text('+5')),
               ],
             ),
           ],

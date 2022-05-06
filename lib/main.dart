@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'components/button.dart';
 import 'counter.dart';
 import 'settings/settings_page.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          primaryColor: const Color(0xFF52FFB8),
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)),
+          primaryColor: Colors.white,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)),
       home: const MyHomePage(),
     );
   }
@@ -104,44 +105,54 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Pomodoro timer'),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
       ),
       body: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-            Text(currentTimerType == timerType.sessionType
-                ? 'Work time 🤓'
-                : 'Break time ✨'),
+            Text(
+                currentTimerType == timerType.sessionType
+                    ? 'Work time 🤓'
+                    : 'Break time ✨',
+                style:
+                    const TextStyle(fontSize: 40, fontWeight: FontWeight.w100)),
+            const SizedBox(height: 40),
             Counter(count: currentTime),
-            ElevatedButton(
+            Button(
               onPressed: playPause,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(isRunning ? 'Pause' : 'Start'),
-                  Icon(isRunning ? Icons.pause : Icons.play_arrow),
+                  Icon(isRunning ? Icons.pause : Icons.play_arrow,
+                      color: Colors.white),
                 ],
               ),
             ),
-            ElevatedButton(
+            Button(
                 onPressed: reset,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
                     Text('Reset'),
-                    Icon(Icons.refresh),
+                    Icon(
+                      Icons.refresh,
+                      color: Colors.white,
+                    ),
                   ],
                 ))
           ])),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: Button(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const SettingsPage()),
           );
         },
-        tooltip: 'Go to settings',
-        child: const Icon(Icons.settings),
+        child: const Icon(Icons.settings, color: Colors.white),
       ),
     );
   }
