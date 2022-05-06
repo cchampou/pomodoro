@@ -21,10 +21,10 @@ class SettingsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IncrementButton(
-                      onPressed: settings.removeSessionTime, text: '-1'),
-                  Text(twoDigits(settings.sessionTime.inMinutes)),
+                      onPressed: settings.removeSessionDuration, text: '-1'),
+                  Text(twoDigits(settings.sessionDuration.inMinutes)),
                   IncrementButton(
-                      onPressed: settings.addSessionTime, text: '+1'),
+                      onPressed: settings.addSessionDuration, text: '+1'),
                 ],
               ))),
     );
