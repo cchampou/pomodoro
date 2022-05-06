@@ -104,30 +104,33 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-              Widget>[
-        Text(currentTimerType == timerType.sessionType ? 'Session' : 'Break'),
-        Counter(count: currentTime),
-        ElevatedButton(
-          onPressed: playPause,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(isRunning ? 'Pause' : 'Start'),
-              Icon(isRunning ? Icons.pause : Icons.play_arrow),
-            ],
-          ),
-        ),
-        ElevatedButton(
-            onPressed: reset,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text('Reset'),
-                Icon(Icons.refresh),
-              ],
-            ))
-      ])),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+            Text(currentTimerType == timerType.sessionType
+                ? 'Work time 🤓'
+                : 'Break time ✨'),
+            Counter(count: currentTime),
+            ElevatedButton(
+              onPressed: playPause,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(isRunning ? 'Pause' : 'Start'),
+                  Icon(isRunning ? Icons.pause : Icons.play_arrow),
+                ],
+              ),
+            ),
+            ElevatedButton(
+                onPressed: reset,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text('Reset'),
+                    Icon(Icons.refresh),
+                  ],
+                ))
+          ])),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
