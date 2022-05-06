@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:pomodoro/counter.dart';
-import 'package:pomodoro/settings/settings_page.dart';
+import 'counter.dart';
+import 'settings/settings_page.dart';
 import 'package:provider/provider.dart';
 
 import 'settings_provider.dart';
@@ -22,9 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: const Color(0xFF52FFB8),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
-      ),
+          primaryColor: const Color(0xFF52FFB8),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)),
       home: const MyHomePage(),
     );
   }

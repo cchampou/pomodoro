@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro/main.dart';
-import 'package:pomodoro/settings/duration_control_bar.dart';
 import 'package:provider/provider.dart';
-
 import '../settings_provider.dart';
+import '../settings/duration_control_bar.dart';
+import '../main.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);

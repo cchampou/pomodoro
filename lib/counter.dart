@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro/digit.dart';
-import 'package:pomodoro/utils.dart';
+import 'digit.dart';
+import 'utils.dart';
 
 class Counter extends StatelessWidget {
   Counter({Key? key, required this.count}) : super(key: key);
