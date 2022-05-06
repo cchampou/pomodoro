@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro/settings/increment_buttons.dart';
+import 'package:pomodoro/utils.dart';
+import 'package:provider/provider.dart';
+
+import '../settings_provider.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage(
-      {Key? key,
-      required this.sessionTime,
-      required this.addSessionTime,
-      required this.removeSessionTime})
-      : super(key: key);
-
-  String sessionTime;
-  void Function() addSessionTime;
-  void Function() removeSessionTime;
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +15,18 @@ class SettingsPage extends StatelessWidget {
         title: const Text('Settings'),
         centerTitle: true,
       ),
-      body: Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IncrementButton(onPressed: removeSessionTime, text: '-1'),
-          Text(sessionTime),
-          IncrementButton(onPressed: addSessionTime, text: '+1'),
-        ],
-      )),
+      body: Consumer<Settings>(
+          builder: (context, settings, child) => Center(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IncrementButton(
+                      onPressed: settings.removeSessionTime, text: '-1'),
+                  Text(twoDigits(settings.sessionTime.inMinutes)),
+                  IncrementButton(
+                      onPressed: settings.addSessionTime, text: '+1'),
+                ],
+              ))),
     );
   }
 }

@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro/counter.dart';
 import 'package:pomodoro/settings/settings_page.dart';
 import 'package:pomodoro/utils.dart';
+import 'package:provider/provider.dart';
+
+import 'settings_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Settings(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,25 +33,10 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-const initialDuration = Duration(minutes: 10);
-
 class _MyHomePageState extends State<MyHomePage> {
-  Duration sessionTime = initialDuration;
   Duration currentTime = initialDuration;
 
   Timer? timer;
-
-  addSessionTime() {
-    setState(() {
-      sessionTime += const Duration(minutes: 1);
-    });
-  }
-
-  removeSessionTime() {
-    setState(() {
-      sessionTime -= const Duration(minutes: 1);
-    });
-  }
 
   reset() {
     setState(() {
@@ -60,7 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
         timer?.cancel();
       } else {
         currentTime = newTime;
-        print(currentTime);
       }
     });
   }
@@ -95,12 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => SettingsPage(
-                      sessionTime: twoDigits(currentTime.inMinutes),
-                      addSessionTime: addSessionTime,
-                      removeSessionTime: removeSessionTime,
-                    )),
+            MaterialPageRoute(builder: (context) => const SettingsPage()),
           );
         },
         tooltip: 'Go to settings',
