@@ -20,8 +20,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: const Color(0xFF52FFB8),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
+      ),
+      home: const MyHomePage(),
     );
   }
 }
