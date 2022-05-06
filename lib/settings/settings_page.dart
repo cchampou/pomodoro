@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro/settings/increment_buttons.dart';
-import 'package:pomodoro/utils.dart';
+import 'package:pomodoro/main.dart';
+import 'package:pomodoro/settings/duration_control_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../settings_provider.dart';
@@ -16,17 +16,19 @@ class SettingsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Consumer<Settings>(
-          builder: (context, settings, child) => Center(
-                  child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IncrementButton(
-                      onPressed: settings.removeSessionDuration, text: '-1'),
-                  Text(twoDigits(settings.sessionDuration.inMinutes)),
-                  IncrementButton(
-                      onPressed: settings.addSessionDuration, text: '+1'),
-                ],
-              ))),
+        builder: (context, settings, child) => Column(
+          children: [
+            DurationControlBar(
+                settings: settings,
+                type: timerType.sessionType,
+                label: 'Session duration in minutes'),
+            DurationControlBar(
+                settings: settings,
+                type: timerType.breakType,
+                label: 'Break duration in minutes'),
+          ],
+        ),
+      ),
     );
   }
 }
