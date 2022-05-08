@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "711277251650",
+    "project_id": "pomodoro-f473f",
+    "storage_bucket": "pomodoro-f473f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711277251650:android:6a90af90f07dabf26831db",
+        "android_client_info": {
+          "package_name": "com.cchampou.pomo.pomodoro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711277251650-qtmpgg2skmhs9m84ck7bklnlesipk1b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRiL4-Tkpi_ulNTq_JEyt84s8fempFU4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711277251650-qtmpgg2skmhs9m84ck7bklnlesipk1b5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
