@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'components/button.dart';
 import 'counter.dart';
+import 'local_notifications.dart';
 import 'settings/settings_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +16,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: (payload) async {
+    print('Notification clicked' + ((payload) != null ? payload : ""));
+  });
+
   runApp(ChangeNotifierProvider(
     create: (context) => Settings(),
     child: const MyApp(),
@@ -52,8 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Duration currentTime = defaultSessionTime;
   bool isRunning = false;
   Timer? timer;
-  final player = AudioCache();
   timerType currentTimerType = timerType.sessionType;
+  static const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails('session', 'Current activity',
+          channelDescription: 'Are you working or taking a break?',
+          importance: Importance.max,
+          priority: Priority.high,
+          ongoing: true,
+          ticker: 'ticker');
+  final NotificationDetails platformChannelSpecifics =
+      const NotificationDetails(android: androidPlatformChannelSpecifics);
 
   reset() {
     Provider.of<Settings>(context, listen: false).settingsApplied();
@@ -73,7 +86,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       final newTime = currentTime - const Duration(seconds: 1);
       if (newTime.inSeconds < 0) {
-        player.play('alarm.mp3');
+        flutterLocalNotificationsPlugin.show(
+            0,
+            'Pomodoro',
+            currentTimerType == timerType.sessionType
+                ? 'Break time ✨'
+                : 'Focus 🤓',
+            platformChannelSpecifics);
         setState(() {
           if (currentTimerType == timerType.sessionType) {
             currentTimerType = timerType.breakType;
@@ -93,13 +112,20 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  playPause() {
+  playPause() async {
     if (timer != null && timer!.isActive) {
       timer!.cancel();
       setState(() {
         isRunning = false;
       });
     } else {
+      await flutterLocalNotificationsPlugin.show(
+          0,
+          'Pomodoro',
+          currentTimerType == timerType.sessionType
+              ? 'Focus 🤓'
+              : 'Break time ✨',
+          platformChannelSpecifics);
       timer = Timer.periodic(const Duration(seconds: 1), (_) => count());
       setState(() {
         isRunning = true;

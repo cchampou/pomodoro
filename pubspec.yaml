@@ -3,7 +3,7 @@ description: A pomodoro timer
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+6
+version: 1.0.0+7
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
@@ -16,6 +16,7 @@ dependencies:
   audioplayers: ^0.20.1
   firebase_messaging: ^11.3.0
   firebase_core: ^1.16.0
+  flutter_local_notifications: ^9.5.2
 
 dev_dependencies:
   flutter_test:

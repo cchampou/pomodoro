@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'main.dart';
 
-const Duration defaultSessionTime = Duration(minutes: 45);
+const Duration defaultSessionTime = Duration(minutes: 35);
 const Duration defaultBreakTime = Duration(minutes: 10);
 
 class Settings extends ChangeNotifier {
