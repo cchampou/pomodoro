@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   timerType currentTimerType = timerType.sessionType;
 
   reset() {
+    Provider.of<Settings>(context, listen: false).settingsApplied();
     if (timer != null) {
       timer!.cancel();
       setState(() {
@@ -150,7 +151,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.white,
                     ),
                   ],
-                ))
+                )),
+            Consumer<Settings>(builder: (context, settings, _) {
+              if (settings.settingsChanged) {
+                return const Text('You change the settings, reset to apply',
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600));
+              }
+              return Container();
+            }),
           ])),
       floatingActionButton: Button(
         onPressed: () {
