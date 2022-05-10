@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: Colors.black,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
       ),
       body: Consumer<Settings>(
         builder: (context, settings, child) => Column(

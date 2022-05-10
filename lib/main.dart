@@ -32,12 +32,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          primaryColor: Colors.white,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blueGrey)),
-      home: const MyHomePage(),
-    );
+    return Consumer<Settings>(builder: (context, settings, _) {
+      return MaterialApp(
+        theme: ThemeData(
+            primaryColor: Colors.white,
+            colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.blueGrey, brightness: Brightness.light)),
+        darkTheme: ThemeData(
+            primaryColor: Colors.white,
+            colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.blueGrey, brightness: Brightness.dark)),
+        home: const MyHomePage(),
+      );
+    });
   }
 }
 
@@ -141,7 +148,17 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        foregroundColor: Colors.black,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              }),
+        ],
       ),
       body: Center(
           child: Column(
@@ -178,6 +195,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 )),
+            Container(
+              height: 8,
+            ),
             Consumer<Settings>(builder: (context, settings, _) {
               if (settings.settingsChanged) {
                 return const Text('You change the settings, reset to apply',
@@ -189,15 +209,6 @@ class _MyHomePageState extends State<MyHomePage> {
               return Container();
             }),
           ])),
-      floatingActionButton: Button(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const SettingsPage()),
-          );
-        },
-        child: const Icon(Icons.settings, color: Colors.white),
-      ),
     );
   }
 }
