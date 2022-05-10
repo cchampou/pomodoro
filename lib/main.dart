@@ -75,6 +75,20 @@ class _MyHomePageState extends State<MyHomePage> {
   final NotificationDetails platformChannelSpecifics =
       const NotificationDetails(android: androidPlatformChannelSpecifics);
 
+  @override
+  initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  _loadSettings() async {
+    await Provider.of<Settings>(context, listen: false).getFromStorage();
+    setState(() {
+      currentTime =
+          Provider.of<Settings>(context, listen: false).sessionDuration;
+    });
+  }
+
   reset() {
     Provider.of<Settings>(context, listen: false).settingsApplied();
     if (timer != null) {
