@@ -22,7 +22,7 @@ jobs:
           echo keyPassword=\${{ secrets.KEY_STORE }} > ${{env.PROPERTIES_PATH}}
           echo storePassword=\${{ secrets.KEY_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
           echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
-          echo storeFile=\${{ env.KEYSTORE_PATH }} >> ${{env.PROPERTIES_PATH}}
+          echo storeFile=\${{ env.KEYSTORE_FILE }} >> ${{env.PROPERTIES_PATH}}
         name: Generate key file
       - run: echo "${{ secrets.KEYSTORE2 }}" | base64 --decode > ${{ env.KEYSTORE_PATH }}
         name: Extract keystore file
@@ -37,3 +37,4 @@ jobs:
 env:
   PROPERTIES_PATH: "./android/key.properties"
   KEYSTORE_PATH: "./android/app/key.jks"
+  KEYSTORE_FILE "./key.jks"
