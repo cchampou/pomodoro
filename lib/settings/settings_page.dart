@@ -28,6 +28,17 @@ class SettingsPage extends StatelessWidget {
                 settings: settings,
                 type: timerType.breakType,
                 label: 'Break duration in minutes'),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Switch(
+                  onChanged: settings.toggleKeepAwake,
+                  value: settings.keepAwake,
+                  activeColor: Theme.of(context).colorScheme.primary,
+                ),
+                const Text('Keep screen on')
+              ],
+            )
           ],
         ),
       ),
