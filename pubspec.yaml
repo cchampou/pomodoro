@@ -19,6 +19,7 @@ dependencies:
   flutter_local_notifications: ^9.5.2
   wakelock: ^0.6.1+2
   shared_preferences: ^2.0.13
+  firebase_analytics: ^9.1.7
 
 dev_dependencies:
   flutter_test:
