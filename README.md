@@ -2,6 +2,8 @@
 
 A pomodoro timer
 
+## Download the application for android [here](https://play.google.com/store/apps/details?id=com.cchampou.pomo.pomodoro)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
