@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class IncrementButton extends StatelessWidget {
-  IncrementButton({Key? key, required this.onPressed, required this.text})
-      : super(key: key);
+  const IncrementButton({super.key, required this.onPressed, required this.text});
 
-  void Function() onPressed;
-  String text;
+  final void Function() onPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

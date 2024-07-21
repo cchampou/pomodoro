@@ -19,10 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: (payload) async {
-    print('Notification clicked' + ((payload) != null ? payload : ""));
-  });
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   runApp(ChangeNotifierProvider(
     create: (context) => Settings(),
@@ -31,7 +28,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +49,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-enum timerType {
+enum TimerType {
   sessionType,
   breakType,
 }
@@ -67,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Duration currentTime = defaultSessionTime;
   bool isRunning = false;
   Timer? timer;
-  timerType currentTimerType = timerType.sessionType;
+  TimerType currentTimerType = TimerType.sessionType;
   static const AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails('session', 'Current activity',
           channelDescription: 'Are you working or taking a break?',
@@ -113,18 +110,18 @@ class _MyHomePageState extends State<MyHomePage> {
         flutterLocalNotificationsPlugin.show(
             0,
             'Pomodoro',
-            currentTimerType == timerType.sessionType
+            currentTimerType == TimerType.sessionType
                 ? 'Break time ✨'
                 : 'Focus 🤓',
             platformChannelSpecifics);
         setState(() {
-          if (currentTimerType == timerType.sessionType) {
-            currentTimerType = timerType.breakType;
+          if (currentTimerType == TimerType.sessionType) {
+            currentTimerType = TimerType.breakType;
             currentTime =
                 Provider.of<Settings>(context, listen: false).breakDuration +
                     const Duration(seconds: 3);
           } else {
-            currentTimerType = timerType.sessionType;
+            currentTimerType = TimerType.sessionType;
             currentTime =
                 Provider.of<Settings>(context, listen: false).sessionDuration +
                     const Duration(seconds: 3);
@@ -146,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
       await flutterLocalNotificationsPlugin.show(
           0,
           'Pomodoro',
-          currentTimerType == timerType.sessionType
+          currentTimerType == TimerType.sessionType
               ? 'Focus 🤓'
               : 'Break time ✨',
           platformChannelSpecifics);
@@ -182,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
             Text(
-                currentTimerType == timerType.sessionType
+                currentTimerType == TimerType.sessionType
                     ? 'Work time 🤓'
                     : 'Break time ✨',
                 style:
@@ -202,9 +199,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Button(
                 onPressed: reset,
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
+                  children: [
                     Text('Reset'),
                     Icon(
                       Icons.refresh,

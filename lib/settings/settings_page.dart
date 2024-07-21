@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../settings_provider.dart';
-import '../settings/duration_control_bar.dart';
-import '../main.dart';
+
+import 'package:Pomodoro/settings_provider.dart';
+import 'package:Pomodoro/settings/duration_control_bar.dart';
+import 'package:Pomodoro/main.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,11 @@ class SettingsPage extends StatelessWidget {
           children: [
             DurationControlBar(
                 settings: settings,
-                type: timerType.sessionType,
+                type: TimerType.sessionType,
                 label: 'Session duration in minutes'),
             DurationControlBar(
                 settings: settings,
-                type: timerType.breakType,
+                type: TimerType.breakType,
                 label: 'Break duration in minutes'),
             const SizedBox(height: 20),
             Row(

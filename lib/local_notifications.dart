@@ -6,8 +6,8 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 const AndroidInitializationSettings initializationSettingsAndroid =
     AndroidInitializationSettings('@mipmap/ic_launcher');
 
-final IOSInitializationSettings initializationSettingsIOS =
-    IOSInitializationSettings();
+const DarwinInitializationSettings initializationSettingsDarwin =
+    DarwinInitializationSettings();
 
-final InitializationSettings initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid, iOS: initializationSettingsDarwin);

@@ -29,6 +29,13 @@
             {
               "client_id": "711277251650-qtmpgg2skmhs9m84ck7bklnlesipk1b5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "711277251650-kpi5qck63lkhjjidl4m2qg2aj166pj3b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cchampou.pomo.pomodoro"
+              }
             }
           ]
         }

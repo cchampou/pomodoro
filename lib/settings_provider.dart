@@ -13,8 +13,8 @@ class Settings extends ChangeNotifier {
   bool settingsChanged = false;
   bool keepAwake = false;
 
-  Duration getDurationByType(timerType type) =>
-      type == timerType.sessionType ? sessionDuration : breakDuration;
+  Duration getDurationByType(TimerType type) =>
+      type == TimerType.sessionType ? sessionDuration : breakDuration;
 
   void settingsApplied() {
     settingsChanged = false;
@@ -44,14 +44,14 @@ class Settings extends ChangeNotifier {
     notifyListeners();
   }
 
-  alterDurationSettings(timerType type, Duration duration) async {
+  alterDurationSettings(TimerType type, Duration duration) async {
     settingsChanged = true;
     final prefs = await SharedPreferences.getInstance();
-    if (type == timerType.sessionType &&
+    if (type == TimerType.sessionType &&
         sessionDuration + duration > const Duration(minutes: 0)) {
       sessionDuration += duration;
       prefs.setInt('sessionDuration', sessionDuration.inMinutes);
-    } else if (type == timerType.breakType &&
+    } else if (type == TimerType.breakType &&
         breakDuration + duration > const Duration(minutes: 0)) {
       breakDuration += duration;
       prefs.setInt('breakDuration', breakDuration.inMinutes);

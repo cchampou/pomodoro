@@ -5,14 +5,13 @@ import '../utils.dart';
 import '../main.dart';
 
 class DurationControlBar extends StatelessWidget {
-  DurationControlBar(
-      {Key? key,
+  const DurationControlBar(
+      {super.key,
       required this.settings,
       required this.label,
-      required this.type})
-      : super(key: key);
+      required this.type});
 
-  final timerType type;
+  final TimerType type;
   final settings;
   final String label;
 
