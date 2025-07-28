@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'main.dart';
@@ -35,10 +35,10 @@ class Settings extends ChangeNotifier {
     keepAwake = value;
     final prefs = await SharedPreferences.getInstance();
     if (keepAwake) {
-      Wakelock.enable();
+      WakelockPlus.enable();
       prefs.setBool('keepAwake', true);
     } else {
-      Wakelock.disable();
+      WakelockPlus.disable();
       prefs.setBool('keepAwake', false);
     }
     notifyListeners();
