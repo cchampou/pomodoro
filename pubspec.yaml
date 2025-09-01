@@ -3,10 +3,10 @@ description: A pomodoro timer
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.5.1+13
+version: 1.5.2+14
 
 environment:
-  sdk: "3.8.1"
+  sdk: ">= 3.9.0"
 
 dependencies:
   flutter:
